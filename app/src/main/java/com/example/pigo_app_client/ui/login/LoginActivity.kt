@@ -1,0 +1,12 @@
+package com.example.pigo_app_client.ui.login
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.example.pigo_app_client.R
+
+class LoginActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_login)
+    }
+}
