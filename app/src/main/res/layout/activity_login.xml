@@ -45,7 +45,7 @@
 
     <Button style="@style/LoginButton"
         android:id="@+id/button_Next_SignUpFragment3"
-        android:onClick="@{() -> activity.login()]"
+        android:onClick="@{() -> activity.login()}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
