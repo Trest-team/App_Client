@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pigo_app_client.R
 import com.example.pigo_app_client.databinding.ActivitySignupBinding
 
-class MAdapter(private val binding: ActivitySignupBinding, private val viewModel: SignUpViewModel): RecyclerView.Adapter<MAdapter.ViewHolder>() {
+class SignUpViewPagerAdapter(private val binding: ActivitySignupBinding, private val viewModel: SignUpViewModel): RecyclerView.Adapter<SignUpViewPagerAdapter.ViewHolder>() {
 
     val layoutList = arrayListOf<Int>(R.layout.layout_sign_up1, R.layout.layout_sign_up2, R.layout.layout_sign_up3)
 

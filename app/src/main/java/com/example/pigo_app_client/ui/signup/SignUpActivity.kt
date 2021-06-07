@@ -19,7 +19,7 @@ class SignUpActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_signup)
 
         viewModel = ViewModelProvider(this).get(SignUpViewModel::class.java)
-        val adapter = MAdapter(binding, viewModel)
+        val adapter = SignUpViewPagerAdapter(binding, viewModel)
 
         with(binding){
             lifecycleOwner = this@SignUpActivity
