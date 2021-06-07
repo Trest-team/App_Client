@@ -4,4 +4,6 @@
     <string name="withAccount"><u>계정이 있으신가요?</u></string>
     <string name="signUp"><u>회원가입</u></string>
     <string name="login"><u>로그인</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
