@@ -1,5 +1,6 @@
 package com.example.pigo_app_client.ui.chat
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,22 +16,36 @@ class ChattingApapter(val chatList : ArrayList<Message>) : RecyclerView.Adapter<
     val CHAT_PARTNER = 1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.row_chat_user, parent, false)
-        return ViewHolder(view)
+        var view : View? = null
+        when(viewType){
+            0->{
+                view = LayoutInflater.from(parent.context).inflate(R.layout.row_chat_user, parent, false)
+                Log.d("user inflating","viewType : ${viewType}")
+            }
+            1->{
+                view = LayoutInflater.from(parent.context).inflate(R.layout.row_chat_partner, parent, false)
+                Log.d("user inflating","viewType : ${viewType}")
+            }
+        }
+
+        return ViewHolder(view!!)
+    }
+    override fun getItemViewType(position: Int): Int {
+        return chatList[position].viewType
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val messageData  = chatList[position]
-        val userName = messageData.userName;
-        val content = messageData.messageContent;
+        Log.d("onBindViewHolder MessageData : ", messageData.name)
+        val userName = messageData.name;
+        val content = messageData.msg;
         when(messageData.viewType) {
 
             CHAT_MINE -> {
                 holder.message.text = content
             }
             CHAT_PARTNER ->{
-                holder.userName.text = userName
+                holder.userName.text = messageData.name
                 holder.message.text = content
             }
         }

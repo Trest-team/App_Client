@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pigo_app_client.Models.Message
 import com.example.pigo_app_client.Models.MessageType
 import com.example.pigo_app_client.databinding.ActivityChattingBinding
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import io.socket.client.IO
 import io.socket.client.Socket
 import io.socket.emitter.Emitter
@@ -19,9 +21,12 @@ class ChattingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChattingBinding
 
     var userName = "류호성"
+    var roomName = "류호성챗봇"
+    
+    lateinit var mSocket: Socket
+    
 
-    lateinit var mSocket: Socket;
-    lateinit var roomName: String;
+    val gson: Gson = Gson()
 
     val chatList: ArrayList<Message> = arrayListOf();
     lateinit var chattingAdapter: ChattingApapter
@@ -48,25 +53,34 @@ class ChattingActivity : AppCompatActivity() {
 
         mSocket.connect()
         mSocket.on("reception", reception)
+        mSocket.on(Socket.EVENT_CONNECT, onConnect)
 
         binding.btnSend.setOnClickListener {
             val msg = binding.editText1.text.toString()
-            val room = "1"
             val obj = JSONObject()
             obj.put("name", userName)
             obj.put("msg", msg)
-            obj.put("room", room)
-
-            val message = Message(userName, msg, room,MessageType.CHAT_MINE.index)
-            Log.d("왜안돼",obj.toString())
-            addItemToRecyclerView(message)
+            obj.put("room", roomName)
             mSocket.emit("chat", obj)
-
+            val message = Message(userName, msg, roomName,MessageType.CHAT_MINE.index)
+            addItemToRecyclerView(message)
         }
     }
 
     var reception = Emitter.Listener {
         Log.d("새로운 메시지 :", it[0].toString() )
+        val chat: Message = gson.fromJson(it[0].toString(), Message::class.java)
+        chat.viewType = MessageType.CHAT_PARTNER.index
+        addItemToRecyclerView(chat)
+        Log.d("chat Message:", chat.toString())
+    }
+
+    var onConnect = Emitter.Listener {
+        val obj = JSONObject()
+        obj.put("name", userName)
+        obj.put("room", roomName)
+        mSocket.emit("subscribe", obj)
+
     }
 
     private fun addItemToRecyclerView(message: Message) {
