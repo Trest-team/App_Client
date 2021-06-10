@@ -57,7 +57,6 @@ class ChattingApapter(val chatList : ArrayList<Message>) : RecyclerView.Adapter<
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val userName = itemView.findViewById<TextView>(R.id.username)
         val message = itemView.findViewById<TextView>(R.id.message)
-        val text = itemView.findViewById<TextView>(R.id.text)
     }
 
 
