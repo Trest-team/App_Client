@@ -45,7 +45,7 @@ class ChattingApapter(val chatList : ArrayList<Message>) : RecyclerView.Adapter<
                 holder.message.text = content
             }
             CHAT_PARTNER ->{
-                holder.userName.text = messageData.name
+                holder.userName.text = userName
                 holder.message.text = content
             }
         }
