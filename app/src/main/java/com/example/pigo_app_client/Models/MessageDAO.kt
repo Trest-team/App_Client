@@ -9,6 +9,6 @@ interface MessageDAO {
     @Insert
     fun insert(msg: Message)
 
-    @Query("SELECT * FROM MESSAGE")
-    fun getAll(): List<Message>
+    @Query("SELECT * FROM MESSAGE WHERE room = :roomName")
+    fun getChat(roomName : String): List<Message>
 }

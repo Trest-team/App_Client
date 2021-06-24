@@ -26,7 +26,7 @@ class ChattingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChattingBinding
 
     var userName = "류호성"
-    var roomName = "류호성챗봇"
+    var roomName = "류호성봇"
     
     lateinit var mSocket: Socket
     
@@ -52,7 +52,7 @@ class ChattingActivity : AppCompatActivity() {
 
         db = MessageDatabase.getInstance(applicationContext)
         CoroutineScope(Dispatchers.IO).launch {
-            var savedContacts = db!!.messageDao().getAll()
+            var savedContacts = db!!.messageDao().getChat(roomName)
             if(savedContacts.isNotEmpty()){
                 chatList.addAll(savedContacts)
             }
@@ -89,8 +89,12 @@ class ChattingActivity : AppCompatActivity() {
     var reception = Emitter.Listener {
         Log.d("새로운 메시지 :", it[0].toString() )
         val chat: Message = gson.fromJson(it[0].toString(), Message::class.java)
+        db = MessageDatabase.getInstance(applicationContext)
         chat.viewType = MessageType.CHAT_PARTNER.index
         addItemToRecyclerView(chat)
+        CoroutineScope(Dispatchers.IO).launch {
+            db!!.messageDao().insert(chat)
+        }
         Log.d("chat Message:", chat.toString())
     }
 
