@@ -1,8 +1,10 @@
 package com.example.pigo_app_client.ui.chat
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.example.pigo_app_client.Models.Message
@@ -33,7 +35,8 @@ class ChattingActivity : AppCompatActivity() {
 
     val gson: Gson = Gson()
 
-    val chatList: ArrayList<Message> = arrayListOf();
+    val chatList: ArrayList<Message> = arrayListOf()
+
     lateinit var chattingAdapter: ChattingApapter
 
     var db : MessageDatabase? = null
@@ -73,18 +76,29 @@ class ChattingActivity : AppCompatActivity() {
         binding.btnSend.setOnClickListener {
             val msg = binding.editText1.text.toString()
             val obj = JSONObject()
-            db = MessageDatabase.getInstance(applicationContext)
-            obj.put("name", userName)
-            obj.put("msg", msg)
-            obj.put("room", roomName)
-            mSocket.emit("chat", obj)
-            val message = Message(userName, msg, roomName,MessageType.CHAT_MINE.index)
-            addItemToRecyclerView(message)
-            CoroutineScope(Dispatchers.IO).launch {
-                db!!.messageDao().insert(message)
+
+            if(msg.replace(" ", "") == ""){
+                Toast.makeText(this, "보낼 내용을 입력해주세요!", Toast.LENGTH_SHORT).show()
+            }else{
+                sendMsg(msg, obj)
             }
         }
+
     }
+
+    private fun sendMsg(msg: String, obj: JSONObject){
+        db = MessageDatabase.getInstance(applicationContext)
+        obj.put("name", userName)
+        obj.put("msg", msg)
+        obj.put("room", roomName)
+        mSocket.emit("chat", obj)
+        val message = Message(userName, msg, roomName,MessageType.CHAT_MINE.index)
+        addItemToRecyclerView(message)
+        CoroutineScope(Dispatchers.IO).launch {
+            db!!.messageDao().insert(message)
+        }
+    }
+
 
     var reception = Emitter.Listener {
         Log.d("새로운 메시지 :", it[0].toString() )

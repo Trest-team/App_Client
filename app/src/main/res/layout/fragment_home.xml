@@ -22,33 +22,16 @@
         android:background="@color/main_beige">
 
         <TextView
-            android:id="@+id/textView3"
-            style="@style/LoginTitleText"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView6"
+            style="@style/ChatTitleText"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Trest"
+            android:background="@color/main_brown"
+            android:text="편함이와의 채팅방"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:src="@drawable/img_trust_bot"
-            app:layout_constraintBottom_toTopOf="@+id/guideline6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline4" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:src="@drawable/img_comfortable_bot"
-            app:layout_constraintBottom_toTopOf="@+id/guideline5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline7" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"

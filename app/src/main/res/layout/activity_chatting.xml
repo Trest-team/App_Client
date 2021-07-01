@@ -8,13 +8,20 @@
     android:orientation="vertical"
     tools:context=".ui.chat.ChattingActivity">
 
+    <TextView
+        android:id="@+id/textView6"
+        style="@style/ChatTitleText"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_brown"
+        android:text="상담가님과의 채팅방" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <LinearLayout
         android:id="@+id/layout1"
@@ -28,8 +35,10 @@
         <EditText
             android:id="@+id/editText1"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:text=""
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingHorizontal="20dp"
             android:background="#ffffff"
             android:inputType="textMultiLine|textNoSuggestions"
             android:maxLength="120"
@@ -38,7 +47,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_send"
             android:layout_width="64dp"
-            android:layout_height="34dp"
+            android:layout_height="45dp"
             android:layout_gravity="center_vertical"
             android:layout_marginHorizontal="5dp"
             android:background="#815854"

@@ -7,11 +7,8 @@
 
     <data>
         <variable
-            name="activity"
+            name="fragment"
             type="com.example.pigo_app_client.ui.main.fragment.CounselFragment" />
-        <variable
-            name="vm"
-            type="com.example.pigo_app_client.ui.main.MainViewModel" />
     </data>
 
 
@@ -43,6 +40,7 @@
             android:id="@+id/button_chatting_counselFragment"
             android:text="채팅하기"
             android:layout_marginLeft="5dp"
+            android:onClick="@{() -> fragment.startChattingActivity()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button_counseling_counselFragment"
             app:layout_constraintHorizontal_bias="0.5"
@@ -51,7 +49,7 @@
 
         <Button style="@style/CounselButton"
             android:id="@+id/button_counseling_counselFragment"
-            android:text="상담하기"
+            android:text="상담 예약하기"
             android:layout_marginRight="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

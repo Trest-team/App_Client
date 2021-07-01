@@ -66,20 +66,12 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline15"
             app:layout_constraintStart_toStartOf="@+id/guideline15" />
 
-
-        <Button
-            style="@style/MyPageButton"
-            android:text="채팅 정보 요청"
-            app:layout_constraintBottom_toTopOf="@+id/button"
-            app:layout_constraintStart_toStartOf="parent" />
-
         <Button
             android:id="@+id/button"
             style="@style/MyPageButton"
             android:text="계정 탈퇴"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline11"
