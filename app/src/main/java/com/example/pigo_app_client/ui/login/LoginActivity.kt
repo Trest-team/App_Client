@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import com.example.pigo_app_client.MainActivity
+import com.example.pigo_app_client.ui.main.MainActivity
 import com.example.pigo_app_client.R
 import com.example.pigo_app_client.databinding.ActivityLoginBinding
 import com.example.pigo_app_client.ui.signup.SignUpActivity

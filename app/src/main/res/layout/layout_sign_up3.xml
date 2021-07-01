@@ -30,7 +30,6 @@
         android:id="@+id/button_Next_SignUpFragment3"
         style="@style/LoginButton"
         android:text="회원가입"
-        android:onClick="@{() -> fragment.signUp()}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
